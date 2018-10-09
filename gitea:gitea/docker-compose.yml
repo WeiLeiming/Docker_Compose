@@ -1,0 +1,22 @@
+version: '2'
+
+networks:
+  gitea:
+    external: false
+
+services:
+  server:
+    image: 'gitea/gitea:latest'
+    restart: always
+    container_name: 'gitea'
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    networks:
+      - gitea
+    volumes:
+      - '/Users/leiming/Documents/gitea-data:/data'
+    ports:
+      - '10080:3000'
+      - '10022:22'
+      
