@@ -3,6 +3,7 @@ gitlab:
   restart: always
   hostname: 'gitlab.example.com'
   container_name: gitlab
+  # privileged: true
   environment:
     TZ: 'Asia/Shanghai'
     GITLAB_OMNIBUS_CONFIG: |
