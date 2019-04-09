@@ -8,7 +8,7 @@ gitlab:
     GITLAB_OMNIBUS_CONFIG: |
       # GitLab URL
       # external_url 'https://gitlab.example.com'
-      external_url 'http://localhost'
+      external_url 'http://localhost:9090'
 
       # Time zone
       gitlab_rails['time_zone'] = 'Asia/Shanghai'
@@ -31,15 +31,17 @@ gitlab:
 
       # Prometheus Alertmanager
       alertmanager['admin_email'] = 'weilm@haiyungroup.com'
+
+      # SSH
+      gitlab_rails['gitlab_shell_ssh_port'] = 9022
   ports:
-    - '80:80'
-    - '443:443'
-    - '22:22'
+    - '9090:9090'
+    - '9022:22'
   volumes:
     # - '/srv/gitlab/config:/etc/gitlab'
     # - '/srv/gitlab/logs:/var/log/gitlab'
     # - '/srv/gitlab/data:/var/opt/gitlab'
 
-    - '/Users/leiming/Documents/gitlab/config:/etc/gitlab'
-    - '/Users/leiming/Documents/gitlab/logs:/var/log/gitlab'
-    - '/Users/leiming/Documents/gitlab/data:/var/opt/gitlab'
+    - '/Users/leiming/Documents/docker/gitlab/config:/etc/gitlab'
+    - '/Users/leiming/Documents/docker/gitlab/logs:/var/log/gitlab'
+    - '/Users/leiming/Documents/docker/gitlab/data:/var/opt/gitlab'
