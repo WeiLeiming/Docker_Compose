@@ -1,0 +1,14 @@
+zentao:
+  image: 'zentao:latest'
+  restart: always
+  container_name: zentao
+  environment:
+    MYSQL_ROOT_PASSWORD: '123456'
+  ports:
+    - '8888:80'
+  volumes:
+    # - '/srv/zentao/www:/app/zentaopms'
+    # - '/srv/zentao/data:/var/lib/mysql'
+
+    - '/Users/leiming/Documents/docker/zentao/www:/app/zentaopms'
+    - '/Users/leiming/Documents/docker/zentao/data:/var/lib/mysql'
