@@ -1,13 +1,13 @@
 gitlab:
   image: 'gitlab/gitlab-ce:latest'
   restart: always
-  hostname: '192.168.31.225'
+  hostname: 'git.shouba.cn'
   container_name: gitlab
   # privileged: true
   environment:
     GITLAB_OMNIBUS_CONFIG: |
       # GitLab URL
-      external_url 'http://192.168.31.225:9090'
+      external_url 'https://git.shouba.cn'
 
       # Time zone
       gitlab_rails['time_zone'] = 'Asia/Shanghai'
@@ -16,31 +16,28 @@ gitlab:
       gitlab_rails['smtp_enable'] = true
       gitlab_rails['smtp_address'] = "smtp.qiye.aliyun.com"
       gitlab_rails['smtp_port'] = 465
-      gitlab_rails['smtp_user_name'] = "weileiming@zhongshianhong.com"
+      gitlab_rails['smtp_user_name'] = "shoubaguanfang@shoubakeji.com"
       gitlab_rails['smtp_password'] = ""
-      gitlab_rails['smtp_domain'] = "zhongshianhong.com"
+      gitlab_rails['smtp_domain'] = "shoubakeji.com"
       gitlab_rails['smtp_authentication'] = "login"
       gitlab_rails['smtp_enable_starttls_auto'] = false
       gitlab_rails['smtp_tls'] = true
 
       # Email Settings
-      gitlab_rails['gitlab_email_from'] = 'weileiming@zhongshianhong.com'
+      gitlab_rails['gitlab_email_from'] = 'shoubaguanfang@shoubakeji.com'
       gitlab_rails['gitlab_email_display_name'] = 'gitlab'
-      gitlab_rails['gitlab_email_reply_to'] = 'weileiming@zhongshianhong.com'
+      gitlab_rails['gitlab_email_reply_to'] = 'shoubaguanfang@shoubakeji.com'
 
       # Prometheus Alertmanager
-      alertmanager['admin_email'] = 'weileiming@zhongshianhong.com'
+      alertmanager['admin_email'] = 'weileiming@shoubakeji.com'
 
       # SSH
-      gitlab_rails['gitlab_shell_ssh_port'] = 9022
+      gitlab_rails['gitlab_shell_ssh_port'] = 22
   ports:
-    - '9090:9090'
-    - '9022:22'
+    - '80:80'
+    - '443:443'
+    - '22:22'
   volumes:
-    # - '/srv/gitlab/config:/etc/gitlab'
-    # - '/srv/gitlab/logs:/var/log/gitlab'
-    # - '/srv/gitlab/data:/var/opt/gitlab'
-
     - '/Users/leiming/Documents/docker/gitlab/config:/etc/gitlab'
     - '/Users/leiming/Documents/docker/gitlab/logs:/var/log/gitlab'
     - '/Users/leiming/Documents/docker/gitlab/data:/var/opt/gitlab'
