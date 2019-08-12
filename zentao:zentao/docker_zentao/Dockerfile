@@ -14,6 +14,7 @@ RUN cd /var/www/ && unzip -q zentao.zip && rm zentao.zip
 RUN a2enmod rewrite
 
 RUN rm -rf /etc/apache2/sites-enabled/000-default.conf /var/lib/mysql/*
+RUN sed -i '1i ServerName 127.0.0.1' /etc/apache2/apache2.conf
 COPY config/apache.conf /etc/apache2/sites-enabled/000-default.conf
 COPY config/ioncube_loader_lin_7.0.so /usr/lib/php/20151012/ioncube_loader_lin_7.0.so
 COPY config/00-ioncube.ini /etc/php/7.0/apache2/conf.d/
