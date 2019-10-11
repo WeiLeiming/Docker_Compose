@@ -9,6 +9,7 @@ RUN echo -e "LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"" > /etc/default/locale 
 
 RUN mkdir -p /app/zentaopms
 COPY docker-entrypoint.sh /app
+RUN chmod 777 /app/docker-entrypoint.sh
 RUN random=`date +%s`; curl http://cdn.zentaopm.com/latest/zentao.zip?rand=$random -o /var/www/zentao.zip
 RUN cd /var/www/ && unzip -q zentao.zip && rm zentao.zip
 RUN a2enmod rewrite
